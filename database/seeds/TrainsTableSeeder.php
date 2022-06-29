@@ -2,6 +2,7 @@
 
 use App\Train;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class TrainsTableSeeder extends Seeder
 {
@@ -10,7 +11,7 @@ class TrainsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
 
         $operatori = [
@@ -33,8 +34,8 @@ class TrainsTableSeeder extends Seeder
             $train->operatore = $operatori[rand(0, count($operatori) - 1)];
             $train->stazione_di_partenza = $stazioni[rand(0, count($stazioni) - 1)];
             $train->stazione_di_arrivo = $stazioni[rand(0, count($stazioni) - 1)];
-            $train->orario_partenza = '2022\10\05 15:00:05';
-            $train->orario_arrivo = '2022\10\05 16:00:05';
+            $train->orario_partenza = $faker->date( 'Y-m-d h:i:s');
+            $train->orario_arrivo = $faker->date('Y-m-d h:i:s');
             $train->codice_treno = rand(1000, 4000);
             $train->numero_carrozze = rand(7, 15);
             $train->in_orario = mt_rand(0, 1);
